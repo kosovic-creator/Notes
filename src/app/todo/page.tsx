@@ -11,6 +11,7 @@ import { Todo } from '@/types/todo';
 import NextError from 'next/error';
 import { Button } from '@/components/ui/button';
 import { useGlobalContext } from '@/app/context/GlobalContext';
+import Reload from '@/components/Reload';
 
 export default function TodoTable() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -24,6 +25,9 @@ export default function TodoTable() {
   // Removed redundant korisnik declaration
 const { user, setUser } = useGlobalContext();
 const korisnik={user};
+const handleReload = () => {
+  window.location.reload();
+};
 useEffect(() => {
      if (status === "authenticated" && session) {
        startTransition(() => {
@@ -89,11 +93,11 @@ useEffect(() => {
   const brojZapisa = filteredTodos.length;
   const brojKompletiranih = todos.filter(todo => todo.done).length;
   const procenatKompletiranih = brojZapisa === 0 ? 0 : Math.round((brojKompletiranih / brojZapisa) * 100);
+return (
+  <>
 
-  return (
-    <>
 
-      <div className="flex justify-end items-center p-4">
+<div className="flex justify-end items-center p-4">
         <div className="relative w-64">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3">
             <Search className="w-5 h-5 text-gray-500" />

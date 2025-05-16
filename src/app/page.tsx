@@ -3,10 +3,16 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 const Page = async () => {
-  const session = await auth();
-  if (!session) redirect("/sign-in");
+const session = await auth();
+if (!session) {
+  redirect("/sign-in");
+  return null;
+  // } else {
+  //   redirect("/todo");
+  // }
+}
 
-  return (
+return (
     <>
       <div className="bg-gray-100 rounded-lg p-4 text-center mb-6">
         <p className="text-gray-600">Signed in as:</p>

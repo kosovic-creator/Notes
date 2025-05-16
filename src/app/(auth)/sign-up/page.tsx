@@ -8,7 +8,7 @@ import { auth } from "@/lib/auth";
 
 const Page = async () => {
   const session = await auth();
-  if (session) redirect("/");
+  if (session) redirect("/sign-in");
 
   return (
     <div className="w-full max-w-sm mx-auto space-y-6">
