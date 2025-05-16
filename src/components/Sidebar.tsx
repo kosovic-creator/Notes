@@ -70,15 +70,19 @@ const Sidebar: React.FC<SidebarProps> = ({ session }) => {
                     >
                         <h1 >Todo</h1>
                     </Link>
-                    {session?.user?.role === "ADMIN" && (
-                        <>
-                            <Link href="/admin/users" className="hover:underline">
-                                <div className="flex gap-2">
-                                    <SignOut />
-                                </div>
-                            </Link>
-                        </>
-                    )}
+<>
+    {session?.user?.role === "ADMIN" ? (
+        <Link href="/admin/users">Admin</Link>
+    ) : null}
+
+    <Link href="/" className="hover:underline">
+        <div className="flex gap-2">
+            <SignOut />
+        </div>
+    </Link>
+</>
+
+
                     {/* <div className="flex gap-2">
                         <SignOut />
                     </div> */}

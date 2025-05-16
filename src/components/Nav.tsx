@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react"; // Koristi useSession za autentifi
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import { useGlobalContext } from '@/app/context/GlobalContext';
+import { SignOut } from "./sign-out";
 
 const Nav = () => {
     const { data: session, status } = useSession(); // Dohvata sesiju
@@ -19,6 +20,7 @@ const { user, setUser } = useGlobalContext();
                 {/* <div className="flex gap-10">
                   <p>korisnik je  iz contexta {user}</p>
                 </div> */}
+               
             </nav>
             {/* Sidebar komponenta */}
             {session && <Sidebar open={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} session={session} />}

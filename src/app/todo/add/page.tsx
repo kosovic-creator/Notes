@@ -55,7 +55,7 @@ export default function AddTodoForm() {
         setPriority('');
         setDetails('');
         setKorisnik('');
-        setToast('Napomena je uspešno obrisan!');
+        setToast('Napomena je uspešno dodata!');
         setTimeout(() => router.push('/todo'), 2000);
       } else {
         const errorData = await response.json();
