@@ -1,12 +1,30 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { v4 as uuid } from "uuid";
 import { encode as defaultEncode } from "next-auth/jwt";
 
-import db from "@/lib/db/db";
+import {db} from "@/lib/db/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
-import { schema } from "@/lib/schema";
+import  schema  from "@/types/usersSchema";
+import { redirect } from "next/navigation";
+
+
+// Extend the User type to include the role property
+declare module "next-auth" {
+  interface User {
+    role?: string;
+  }
+  interface Session {
+    user?: {
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      role?: string;
+    };
+  }
+}
 
 const adapter = PrismaAdapter(db);
 
@@ -27,8 +45,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: validatedCredentials.email,
             password: validatedCredentials.password,
           },
-        });
 
+        }
+
+      );
+
+      // redirect("/todo");
         if (!user) {
           throw new Error("Invalid credentials.");
         }
@@ -38,13 +60,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({ token, user, account }) {
       if (account?.provider === "credentials") {
         token.credentials = true;
       }
+      // Dodajemo role u token kada postoji user (znači na login)
+      if (user) {
+        token.role = user.role;
+      }
       return token;
     },
+    // Dodaj i session callback da bi role bio dostupan na frontendu
+    async session({ session, token }) {
+      if (token?.role && typeof token.role === "string") {
+        session.user.role = token.role;
+      }
+      return session;
+    },
   },
+
   jwt: {
     encode: async function (params) {
       if (params.token?.credentials) {
