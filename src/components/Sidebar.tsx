@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { SignOut } from "@/components/sign-out";
-import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
+import { redirect, useRouter } from "next/navigation"; // Import useRouter from next/navigation
 
 interface SidebarProps {
     session: { user?: { role?: string } }; // Adjust this type based on your session object structure
@@ -15,6 +15,13 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ session }) => {
     const [isVisible, setIsVisible] = useState(false);
     const router = useRouter(); // Next.js router
+
+    // Redirect to sign-in if no session
+    useEffect(() => {
+        if (!session) {
+            redirect("/sign-in");
+        }
+    }, [session]);
 
     // Close sidebar when clicking outside
     useEffect(() => {
@@ -66,16 +73,15 @@ const Sidebar: React.FC<SidebarProps> = ({ session }) => {
                     {session?.user?.role === "ADMIN" && (
                         <>
                             <Link href="/admin/users" className="hover:underline">
-                                Admin
-                            </Link>
-                            <Link href="/admin/users/add" className="hover:underline">
-                                Dodaj Korisnika
+                                <div className="flex gap-2">
+                                    <SignOut />
+                                </div>
                             </Link>
                         </>
                     )}
-                    <div className="flex gap-2">
+                    {/* <div className="flex gap-2">
                         <SignOut />
-                    </div>
+                    </div> */}
                 </div>
             </aside>
         </>
