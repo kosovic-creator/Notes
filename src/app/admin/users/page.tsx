@@ -67,7 +67,7 @@ export default function TodoTable() {
             onChange={(e) => setFilter(e.target.value)}
           />
         </div>
-            <Link href="/users/add" className='mr-0 p-3'>
+            <Link href="/admin/users/add" className='mr-0 p-3'>
               <button className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition p-4">Dodaj</button>
             </Link>
           </div>

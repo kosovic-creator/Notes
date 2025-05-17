@@ -8,6 +8,8 @@ import usersSchema  from '@/types/usersSchema';
 import { Input } from "@/components/ui/input";
 import { useParams } from 'next/navigation';
 import Toast from "@/components/ui/Toast";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select";
 export default function UpdatePage() {
     const [id, setId] = useState<string | null>(null);
     const [name, setName] = useState('');
@@ -145,19 +147,20 @@ export default function UpdatePage() {
                     />
                 </div>
 
-                <div className="mb-4">
-                    <label htmlFor="role" className="block text-sm font-medium text-gray-700">Role:</label>
-                    <Input
-                        type="text"
-                        id="role"
-                        value={role}
-                        onChange={(e) => setRole(e.target.value)}
-                        // required
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Unesite role"
-                    />
-                </div>
+                <div>
+          <Label htmlFor="role" className="block font-medium p-2 border-gray-100">Role</Label>
+          <Select value={role} onValueChange={setRole}>
+            <SelectTrigger id="role" className="border rounded p-2 w-full">
+              {role ? role : "Odaberite rolu"}
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ADMIN">Admin</SelectItem>
+              <SelectItem value="USER">User</SelectItem>
 
+              {/* Dodajte još rola po potrebi */}
+            </SelectContent>
+          </Select>
+        </div>
                 <Button type="submit" className="w-full bg-black text-white py-2 rounded-md hover:bg-black-700">
                     Izmjeni
                 </Button>

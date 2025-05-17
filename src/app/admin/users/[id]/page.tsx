@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal"; // Adjust the path based on your project structure
 import { Users } from "@/types/users";
+import Toast from "@/components/ui/Toast";
+
 
 export default function Page({ params }: { params: Promise<{ id: string }> }) {
   const [id, setId] = useState<string | null>(null);
@@ -91,7 +93,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     setTodos(todos.filter(t => t.id !== Number(id)));
     setIsModalOpen(false);
 
-    showToast('Napomena je uspešno obrisana!');
+    showToast('Korisnkje uspešno obrisan!');
     setTimeout(() => router.push('/admin/users'), 1500);
   };
 
@@ -129,23 +131,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
           itemId={selectedItemId!}
           title={users?.email} // <-- OVO JE KLJUČNO
         />
-        {toast && (
-          <div
-            style={{
-              position: 'fixed',
-              top: 60,
-              right: 20,
-              background: 'white',
-              color: 'black',
-              padding: '12px 24px',
-              borderRadius: 6,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-              zIndex: 9999,
-            }}
-          >
-            {toast}
-          </div>
-        )}
+        <Toast message={toast} />
       </div>
     </div>
   );

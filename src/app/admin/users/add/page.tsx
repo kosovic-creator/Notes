@@ -4,6 +4,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select';
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -115,15 +116,18 @@ export default function AddTodoForm() {
           />
         </div>
         <div>
-          <Label htmlFor="role" className="block font-medium p-2  border-gray-100">Role</Label>
-          <Input
-            id="role"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            className="border rounded p-2 w-full"
-            placeholder="Unesite rolu"
+          <Label htmlFor="role" className="block font-medium p-2 border-gray-100">Role</Label>
+          <Select value={role} onValueChange={setRole}>
+            <SelectTrigger id="role" className="border rounded p-2 w-full">
+              {role ? role : "Odaberite rolu"}
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ADMIN">Admin</SelectItem>
+              <SelectItem value="USER">User</SelectItem>
 
-          />
+              {/* Dodajte još rola po potrebi */}
+            </SelectContent>
+          </Select>
         </div>
 
 
