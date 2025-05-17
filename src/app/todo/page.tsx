@@ -11,7 +11,7 @@ import { Todo } from '@/types/todo';
 import NextError from 'next/error';
 import { Button } from '@/components/ui/button';
 import { useGlobalContext } from '@/app/context/GlobalContext';
-import Reload from '@/components/Reload';
+
 
 export default function TodoTable() {
   const [todos, setTodos] = useState<Todo[]>([]);
