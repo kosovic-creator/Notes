@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import {  useRouter } from "next/navigation";
 
 const SignOut = () => {
@@ -12,9 +13,11 @@ const SignOut = () => {
 
   return (
     <div className="flex justify-center">
-      <Button variant="destructive" onClick={handleSignOut}>
-        Sign Out
+      <Link href="/sign-in">
+      <Button  onClick={handleSignOut}>
+       Odjavi se
       </Button>
+      </Link>
     </div>
   );
 };

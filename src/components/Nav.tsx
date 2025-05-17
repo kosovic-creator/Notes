@@ -11,16 +11,26 @@ import { SignOut } from "./sign-out";
 const Nav = () => {
     const { data: session, status } = useSession(); // Dohvata sesiju
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State za sidebar
-const { user, setUser } = useGlobalContext();
+    const { user, setUser } = useGlobalContext();
     return (
         <header>
-            <nav className="flex justify-between items-center w-full px-10 py-8 bg-black text-white">
-                {/* Link ka /todo ako je korisnik prijavljen */}
-                {/* {session ? <Link href="/todo">Početna</Link> : null} */}
-                {/* <div className="flex gap-10">
-                  <p>korisnik je  iz contexta {user}</p>
-                </div> */}
-               
+            <nav className="flex justify-end items-center w-full px-8 py-5 bg-black text-white">
+{!user ? (
+    <>
+        <Link href="/sign-in">
+            <h5>Prijavi se</h5>
+        </Link>
+    </>
+) : (
+    <>
+        <SignOut />
+        <div>
+            <p>korisnik je : {user}</p>
+        </div>
+    </>
+)}
+
+
             </nav>
             {/* Sidebar komponenta */}
             {session && <Sidebar open={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} session={session} />}
