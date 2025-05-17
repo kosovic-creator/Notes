@@ -13,7 +13,7 @@ const Page = async () => {
   if (session) redirect("/");
 
   return (
-    <div className="w-full max-w-sm mx-auto space-y-6">
+    <div className="w-full max-w-sm mx-auto space-y-6b mt-40">
       <h1 className="text-2xl font-bold text-center mb-6">Prijava</h1>
 
       <GithubSignIn />
@@ -49,7 +49,7 @@ const Page = async () => {
         />
         <Input
           name="password"
-          placeholder="Password"
+          placeholder="Šifra"
           type="password"
           required
           autoComplete="current-password"
@@ -61,7 +61,7 @@ const Page = async () => {
 
       <div className="text-center">
         <Button asChild variant="link">
-          <Link href="/sign-up">Don&apos;t have an account? Sign up</Link>
+          <Link href="/sign-up">Ako nemate nalog? Napravite nalog</Link>
         </Button>
       </div>
     </div>

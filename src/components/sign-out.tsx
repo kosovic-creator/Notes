@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
 import { signOut } from "next-auth/react";
 
 const SignOut = () => {
@@ -9,9 +9,9 @@ const SignOut = () => {
 
   return (
     <div className="flex justify-center">
-      <Button onClick={handleSignOut}>
+      <button onClick={handleSignOut}>
         Odjavi se
-      </Button>
+      </button>
     </div>
   );
 };

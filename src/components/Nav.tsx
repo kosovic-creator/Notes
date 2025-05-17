@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react"; // Koristi useSession za autentifi
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import { useGlobalContext } from '@/app/context/GlobalContext';
-import { SignOut } from "./sign-out";
+
 
 const Nav = () => {
     const { data: session, status } = useSession(); // Dohvata sesiju
@@ -14,20 +14,16 @@ const Nav = () => {
     const { user, setUser } = useGlobalContext();
     return (
         <header>
-            <nav className="flex justify-end items-center w-full px-8 py-5 bg-black text-white">
+            <nav className="flex justify-end items-center w-full px-8 py-7 bg-black text-white">
 {user ? (
     <>
-     <SignOut />
+    
         <div className="ml-auto">
             <p>korisnik je : {user}</p>
         </div>
     </>
 ) : (
-    <>
- <Link href="/sign-in">
-            Prijavi se
-        </Link>
-    </>
+    null
 )}
             </nav>
             {/* Sidebar komponenta */}

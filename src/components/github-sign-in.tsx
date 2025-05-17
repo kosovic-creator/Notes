@@ -12,7 +12,7 @@ const GithubSignIn = () => {
     >
       <Button className="w-full" variant="outline">
         <Github />
-        Continue with GitHub
+        Nastavite sa GitHub
       </Button>
     </form>
   );
