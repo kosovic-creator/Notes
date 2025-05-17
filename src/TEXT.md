@@ -1,3 +1,32 @@
+sign-in.tsx:
+"use client";
+import { Button } from "@/components/ui/button";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
+import {  useRouter } from "next/navigation";
+
+const SignOut = () => {
+  const router = useRouter();
+  const handleSignOut = async () => {
+    await signOut();
+   router.push("/sign-in");
+  };
+
+  return (
+    <div className="flex justify-center">
+      <Link href="/sign-in">
+      <Button  onClick={handleSignOut}>
+       Odjavi se
+      </Button>
+      </Link>
+    </div>
+  );
+};
+
+export { SignOut };
+
+Nav.tsx:
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
@@ -21,11 +50,12 @@ const Nav = () => {
         <div className="ml-auto">
             <p>korisnik je : {user}</p>
         </div>
+
     </>
 ) : (
     <>
  <Link href="/sign-in">
-            Prijavi se
+            <h5>Prijavi se</h5>
         </Link>
     </>
 )}
@@ -35,4 +65,7 @@ const Nav = () => {
         </header>
     );
 };
+
 export default Nav;
+Problem je sledeći:
+Kad oćo da se izlogujem (sign-out) uspkešno ne izloguje ali akd to uradim kad je otvorena neka strana ostavlja me na toj strani izlogovan. Neznam šta je problem?

@@ -24,10 +24,8 @@ export default function TodoTable() {
   const itemsPerPage = 5;
   // Removed redundant korisnik declaration
 const { user, setUser } = useGlobalContext();
-const korisnik={user};
-const handleReload = () => {
-  window.location.reload();
-};
+
+
 useEffect(() => {
      if (status === "authenticated" && session) {
        startTransition(() => {
@@ -47,15 +45,15 @@ useEffect(() => {
     return <LoadingDots />;
   }
   // Ako nije ulogovan, možeš preusmjeriti ili prikazati poruku
-  if (status === "unauthenticated") {
-    return (
-      <div className="text-center mt-8">
-         <Button onClick={() => window.location.reload()}>Reload</Button>
-        Morate biti prijavljeni da biste vidjeli ovu stranicu.
-     korisnik je : {user}
-      </div>
-    );
-  }
+  // if (status === "unauthenticated") {
+  //   return (
+  //     <div className="text-center mt-8">
+  //        <Button onClick={() => window.location.reload()}>Reload</Button>
+  //       Morate biti prijavljeni da biste vidjeli ovu stranicu.
+  //    korisnik je : {user}
+  //     </div>
+  //   );
+  // }
   if (error) {
     return (
       <div className="text-center mt-8 text-red-500">

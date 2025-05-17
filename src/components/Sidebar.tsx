@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ session }) => {
                 } transition-transform duration-300 ease-in-out`}
             >
                 <div className="flex flex-col gap-4 pt-4">
-                    <Link href="/" className="hover:underline p-4 ">
+                    <Link href="/" className="hover:underline">
                         <h1 className="text-2xl font-bold"></h1>
                     </Link>
                     <Link
@@ -74,18 +74,10 @@ const Sidebar: React.FC<SidebarProps> = ({ session }) => {
     {session?.user?.role === "ADMIN" ? (
         <Link href="/admin/users">Admin</Link>
     ) : null}
-
-    <Link href="/" className="hover:underline">
-        <div className="flex gap-2">
-            <SignOut />
-        </div>
-    </Link>
-</>
-
-
-                    {/* <div className="flex gap-2">
-                        <SignOut />
-                    </div> */}
+                    </>
+                </div>
+                <div className="flex gap-2">
+                    <SignOut />
                 </div>
             </aside>
         </>

@@ -14,7 +14,7 @@ const Page = async () => {
 
   return (
     <div className="w-full max-w-sm mx-auto space-y-6">
-      <h1 className="text-2xl font-bold text-center mb-6">Sign In</h1>
+      <h1 className="text-2xl font-bold text-center mb-6">Prijava</h1>
 
       <GithubSignIn />
       <div className="relative">
@@ -23,7 +23,7 @@ const Page = async () => {
         </div>
         <div className="relative flex justify-center text-sm">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with email
+           Ili nastavi sa Email
           </span>
         </div>
       </div>
@@ -55,7 +55,7 @@ const Page = async () => {
           autoComplete="current-password"
         />
         <Button className="w-full" type="submit">
-          Sign In
+          Prijavi se
         </Button>
       </form>
 
