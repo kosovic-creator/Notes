@@ -1,8 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
-import BtnReload from "@/components/BtnReload";
-import { SignOut } from "@/components/sign-out";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from 'react';
 import { useSession } from "next-auth/react";
