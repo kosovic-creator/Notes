@@ -17,11 +17,11 @@ const Sidebar: React.FC<SidebarProps> = ({ session }) => {
     const router = useRouter(); // Next.js router
 
     // Redirect to sign-in if no session
-    useEffect(() => {
-        if (!session) {
-            redirect("/sign-in");
-        }
-    }, [session]);
+    // useEffect(() => {
+    //     if (!session) {
+    //         redirect("/sign-in");
+    //     }
+    // }, [session]);
 
     // Close sidebar when clicking outside
     useEffect(() => {
